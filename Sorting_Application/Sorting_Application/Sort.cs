@@ -40,10 +40,13 @@ namespace Sorting_Application
         }
             
         
-        //public DateTime QuickSort()
-        //{
+        public DateTime QuickSort()
+        {
+            return DateTime.Now;
+        }
+        
 
-        //}
+        
 
         public TimeSpan SelectionSort()
         {
