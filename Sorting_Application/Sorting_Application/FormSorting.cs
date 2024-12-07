@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +43,6 @@ namespace Sorting_Application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -89,14 +90,16 @@ namespace Sorting_Application
                     listBoxResult.Items.Add(arrayData.ArrData[i]);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if (MessageBox.Show("isi data dengan benar") == DialogResult.OK)
-                {
-                    textBoxBanyakData.Clear();
-                    textBoxBanyakData.Focus();
-                }
+                if(ex is FormatException)
+                    MessageBox.Show("please input the number format correctly");
+                else
+                    MessageBox.Show(ex.Message);
+                textBoxBanyakData.Clear();
+                textBoxBanyakData.Focus();
             }
+            
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

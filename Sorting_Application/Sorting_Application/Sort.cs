@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,22 @@ namespace Sorting_Application
             this.ArrData = new int[jumlahData];
         }
 
-        public int[] ArrData { get => arrData; set => arrData = value; }
+        public int[] ArrData
+        {
+            get => arrData;
 
+            set
+            {
+                if (value.Length >= 1000)
+                {
+                    arrData = value;
+                }
+                else
+                {
+                    throw new Exception("Column length's minimum is 1000");
+                }
+            }
+        }
         public TimeSpan BubbleSort()
         {
             DateTime waktuMulai = DateTime.Now;
