@@ -14,9 +14,9 @@ namespace Sorting_Application
     public partial class FormSorting : Form
     {
         Random random = new Random();
-        Sort arrayData;
         int banyaknyaData;
         TimeSpan durasiSorting;
+        Sort arrayData;
 
         public FormSorting()
         {
@@ -55,6 +55,7 @@ namespace Sorting_Application
 
         private void buttonGo_Click(object sender, EventArgs e)
         {
+            listBoxResult.Items.Clear();
             banyaknyaData = int.Parse(textBoxBanyakData.Text);
             arrayData = new Sort(banyaknyaData);
             for (int i = 0; i < arrayData.ArrData.Length; i++)
@@ -93,7 +94,7 @@ namespace Sorting_Application
             radioButtonBubble.Checked = false;
             radioButtonInsertion.Checked = false;
             radioButtonSelection.Checked = false;
-            radioButtonRadix.Checked = false;
+            radioButtonMerge.Checked = false;
             radioButtonQuick.Checked = false;
             textBoxBanyakData.Focus();
         }
