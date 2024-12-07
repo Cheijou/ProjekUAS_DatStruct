@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sorting_Application
 {
@@ -13,7 +14,6 @@ namespace Sorting_Application
         public Sort(int jumlahData)
         {
             this.ArrData = new int[jumlahData];
-            
         }
 
         public int[] ArrData { get => arrData; set => arrData = value; }
@@ -38,15 +38,55 @@ namespace Sorting_Application
             TimeSpan durasiSorting = waktuSelesai - waktuMulai;
             return durasiSorting;
         }
-            
-        
-        public DateTime QuickSort()
-        {
-            return DateTime.Now;
-        }
-        
 
-        
+        int pos;
+        public TimeSpan QuickSort(int first, int last)
+        {
+            DateTime waktuMulai = DateTime.Now;
+            if (first < last)
+            {
+                pos = SplitQuickSort(first, last);
+                QuickSort(first, pos - 1);
+                QuickSort(pos + 1, last);
+            }
+            DateTime waktuAkhir = DateTime.Now;
+            TimeSpan durasiSorting = waktuAkhir - waktuMulai;
+            return durasiSorting; 
+
+        }
+
+        public int SplitQuickSort(int first, int last)
+        {
+            int pivot = ArrData[first];
+            int left = first;
+            int right = last;
+            while (left < right)
+            {
+                while (ArrData[right] > pivot)
+                {
+                    right--;
+                }
+                while (left < right && ArrData[left] <= pivot)
+                {
+                    left++;
+                }
+                if (left < right)
+                {
+                    Tukar(left, right);
+                }
+            }
+            pos = right;
+            ArrData[first] = ArrData[pos];
+            ArrData[pos] = pivot;
+            return pos;
+        }
+
+        public void Tukar(int left, int right)
+        {
+            int temp = ArrData[right];
+            ArrData[right] = ArrData[left];
+            arrData[left] = temp;
+        }
 
         public TimeSpan SelectionSort()
         {
