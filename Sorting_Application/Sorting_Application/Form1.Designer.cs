@@ -46,7 +46,10 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.labelTimePassed = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.buttonStop = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,14 +60,14 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-3, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(715, 94);
+            this.panel1.Size = new System.Drawing.Size(821, 94);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(237, 30);
+            this.label1.Location = new System.Drawing.Point(310, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 32);
             this.label1.TabIndex = 0;
@@ -93,7 +96,7 @@
             this.groupBox1.Controls.Add(this.radioButtonSelect);
             this.groupBox1.Controls.Add(this.radioButtonInsert);
             this.groupBox1.Controls.Add(this.radioButtonBubble);
-            this.groupBox1.Location = new System.Drawing.Point(429, 113);
+            this.groupBox1.Location = new System.Drawing.Point(549, 113);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 175);
             this.groupBox1.TabIndex = 3;
@@ -178,14 +181,14 @@
             // 
             this.listBoxResult.FormattingEnabled = true;
             this.listBoxResult.ItemHeight = 16;
-            this.listBoxResult.Location = new System.Drawing.Point(12, 206);
+            this.listBoxResult.Location = new System.Drawing.Point(20, 203);
             this.listBoxResult.Name = "listBoxResult";
-            this.listBoxResult.Size = new System.Drawing.Size(403, 180);
+            this.listBoxResult.Size = new System.Drawing.Size(521, 180);
             this.listBoxResult.TabIndex = 6;
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(567, 331);
+            this.buttonExit.Location = new System.Drawing.Point(687, 331);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(107, 23);
             this.buttonExit.TabIndex = 7;
@@ -195,7 +198,7 @@
             // 
             // buttonGo
             // 
-            this.buttonGo.Location = new System.Drawing.Point(430, 331);
+            this.buttonGo.Location = new System.Drawing.Point(550, 331);
             this.buttonGo.Name = "buttonGo";
             this.buttonGo.Size = new System.Drawing.Size(107, 23);
             this.buttonGo.TabIndex = 8;
@@ -204,7 +207,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(429, 360);
+            this.buttonClear.Location = new System.Drawing.Point(549, 360);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(108, 23);
             this.buttonClear.TabIndex = 9;
@@ -214,7 +217,7 @@
             // labelTimePassed
             // 
             this.labelTimePassed.AutoSize = true;
-            this.labelTimePassed.Location = new System.Drawing.Point(605, 301);
+            this.labelTimePassed.Location = new System.Drawing.Point(725, 301);
             this.labelTimePassed.Name = "labelTimePassed";
             this.labelTimePassed.Size = new System.Drawing.Size(69, 16);
             this.labelTimePassed.TabIndex = 10;
@@ -223,28 +226,57 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(427, 301);
+            this.label6.Location = new System.Drawing.Point(547, 301);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(172, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "Executed Time Calculation :";
             // 
-            // buttonStop
+            // buttonSave
             // 
-            this.buttonStop.Location = new System.Drawing.Point(567, 360);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(107, 23);
-            this.buttonStop.TabIndex = 12;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new System.Drawing.Point(687, 360);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(107, 23);
+            this.buttonSave.TabIndex = 12;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(347, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(160, 16);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Generate Column Length :";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(350, 141);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(193, 22);
+            this.textBox1.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(291, 144);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Length :";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(712, 405);
-            this.Controls.Add(this.buttonStop);
+            this.ClientSize = new System.Drawing.Size(824, 405);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelTimePassed);
             this.Controls.Add(this.buttonClear);
@@ -288,7 +320,10 @@
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Label labelTimePassed;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button buttonStop;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
     }
 }
 
