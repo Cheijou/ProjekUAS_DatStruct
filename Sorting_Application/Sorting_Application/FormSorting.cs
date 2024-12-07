@@ -91,9 +91,12 @@ namespace Sorting_Application
             }
             catch(Exception ex)
             {
-                MessageBox.Show("isi data dengan benar");
+                if (MessageBox.Show("isi data dengan benar") == DialogResult.OK)
+                {
+                    textBoxBanyakData.Clear();
+                    textBoxBanyakData.Focus();
+                }
             }
-            
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
