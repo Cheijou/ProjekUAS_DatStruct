@@ -33,6 +33,8 @@ namespace Sorting_Application
                 }
             }
         }
+
+        #region Bubble Sort
         public TimeSpan BubbleSort()
         {
             DateTime waktuMulai = DateTime.Now;
@@ -53,7 +55,9 @@ namespace Sorting_Application
             TimeSpan durasiSorting = waktuSelesai - waktuMulai;
             return durasiSorting;
         }
+        #endregion
 
+        #region Quick Sort
         int pos;
         public TimeSpan QuickSort(int first, int last)
         {
@@ -102,7 +106,9 @@ namespace Sorting_Application
             ArrData[right] = ArrData[left];
             arrData[left] = temp;
         }
+        #endregion
 
+        #region Selection Sort
         public TimeSpan SelectionSort()
         {
             DateTime waktuMulai = DateTime.Now;
@@ -128,12 +134,16 @@ namespace Sorting_Application
 
             return durasiSorting;
         }
+        #endregion
 
+        #region Merge Sort
         //public DateTime MergeSort()
         //{
 
         //}
+        #endregion
 
+        #region Insertion Sort
         public TimeSpan InsertionSort()
         {
             DateTime waktuMulai = DateTime.Now;
@@ -153,5 +163,6 @@ namespace Sorting_Application
             TimeSpan durasiSorting = waktuSelesai - waktuMulai;
             return durasiSorting;
         }
+        #endregion
     }
 }
