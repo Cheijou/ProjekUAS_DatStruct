@@ -84,6 +84,10 @@ namespace Sorting_Application
                     int last = arrayData.ArrData.Length - 1;
                     durasiSorting = arrayData.QuickSort(first, last);
                 }
+                else if (radioButtonMerge.Checked == true) 
+                {
+                    durasiSorting = arrayData.MergeSort();
+                }
                 labelDurasiSorting.Text = durasiSorting.ToString("mm' : 'ss' : 'fff");
                 for (int i = 0; i < arrayData.ArrData.Length; i++)
                 {

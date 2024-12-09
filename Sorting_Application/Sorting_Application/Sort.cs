@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,10 +138,79 @@ namespace Sorting_Application
         #endregion
 
         #region Merge Sort
-        //public DateTime MergeSort()
-        //{
+        public TimeSpan MergeSort()
+        {
+            DateTime waktuMulai = DateTime.Now;
+            //hasil array yang sudah urut dimasukan ke properti
+            this.ArrData = MergeSortRecursive(this.ArrData);
+            DateTime waktuSelesai = DateTime.Now;
+            TimeSpan durasiSorting = waktuSelesai - waktuMulai;
+            return durasiSorting;
+        }
 
-        //}
+        private int[] MergeSortRecursive(int[] data)
+        {
+            //array sudah urut dan di return
+            if (data.Length <= 1)
+            {
+                return data;
+            }
+
+            int mid = data.Length / 2;
+            int[] left = new int[mid];
+            int[] right = new int[data.Length - mid];
+
+            for (int i = 0; i < mid; i++)
+            {
+                left[i] = data[i];
+            }
+
+            for (int i = mid; i < data.Length; i++)
+            {
+                right[i - mid] = data[i];
+            }
+
+            //direkursif terus sampai urut
+            left = MergeSortRecursive(left);
+            right = MergeSortRecursive(right);
+
+            //kedua array kanan dan kiri yang sudah urut digabung
+            return Merge(left, right);
+        }
+
+        private int[] Merge(int[] left, int[] right)
+        {
+            int[] result = new int[left.Length + right.Length];
+            int i = 0, j = 0, k = 0;
+
+            while (i < left.Length && j < right.Length)
+            {
+                if (left[i] <= right[j])
+                {
+                    result[k] = left[i];
+                    i++;
+                }
+                else
+                {
+                    result[k] = right[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i < left.Length)
+            {
+                result[k] = left[i];
+                i++;
+                k++;
+            }
+            while (j < right.Length)
+            {
+                result[k] = right[j];
+                j++;
+                k++;
+            }
+            return result;
+        }
         #endregion
 
         #region Insertion Sort
