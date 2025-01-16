@@ -57,7 +57,7 @@
             this.panel1.BackColor = System.Drawing.Color.Blue;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-4, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1244, 146);
             this.panel1.TabIndex = 0;
@@ -83,20 +83,19 @@
             this.groupBox1.Controls.Add(this.radioButtonBubble);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(454, 173);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(376, 273);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sorting Operation";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // radioButtonQuick
             // 
             this.radioButtonQuick.AutoSize = true;
             this.radioButtonQuick.Location = new System.Drawing.Point(32, 217);
-            this.radioButtonQuick.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonQuick.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonQuick.Name = "radioButtonQuick";
             this.radioButtonQuick.Size = new System.Drawing.Size(174, 34);
             this.radioButtonQuick.TabIndex = 4;
@@ -108,7 +107,7 @@
             // 
             this.radioButtonMerge.AutoSize = true;
             this.radioButtonMerge.Location = new System.Drawing.Point(32, 177);
-            this.radioButtonMerge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonMerge.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonMerge.Name = "radioButtonMerge";
             this.radioButtonMerge.Size = new System.Drawing.Size(181, 34);
             this.radioButtonMerge.TabIndex = 3;
@@ -120,7 +119,7 @@
             // 
             this.radioButtonSelection.AutoSize = true;
             this.radioButtonSelection.Location = new System.Drawing.Point(32, 137);
-            this.radioButtonSelection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonSelection.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonSelection.Name = "radioButtonSelection";
             this.radioButtonSelection.Size = new System.Drawing.Size(217, 34);
             this.radioButtonSelection.TabIndex = 2;
@@ -132,7 +131,7 @@
             // 
             this.radioButtonInsertion.AutoSize = true;
             this.radioButtonInsertion.Location = new System.Drawing.Point(32, 96);
-            this.radioButtonInsertion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonInsertion.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonInsertion.Name = "radioButtonInsertion";
             this.radioButtonInsertion.Size = new System.Drawing.Size(209, 34);
             this.radioButtonInsertion.TabIndex = 1;
@@ -144,14 +143,13 @@
             // 
             this.radioButtonBubble.AutoSize = true;
             this.radioButtonBubble.Location = new System.Drawing.Point(32, 54);
-            this.radioButtonBubble.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonBubble.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonBubble.Name = "radioButtonBubble";
             this.radioButtonBubble.Size = new System.Drawing.Size(188, 34);
             this.radioButtonBubble.TabIndex = 0;
             this.radioButtonBubble.TabStop = true;
             this.radioButtonBubble.Text = "Bubble Sort";
             this.radioButtonBubble.UseVisualStyleBackColor = true;
-            this.radioButtonBubble.CheckedChanged += new System.EventHandler(this.radioButtonBubble_CheckedChanged);
             // 
             // label4
             // 
@@ -169,7 +167,7 @@
             this.listBoxResult.FormattingEnabled = true;
             this.listBoxResult.ItemHeight = 25;
             this.listBoxResult.Location = new System.Drawing.Point(30, 317);
-            this.listBoxResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxResult.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxResult.Name = "listBoxResult";
             this.listBoxResult.Size = new System.Drawing.Size(374, 279);
             this.listBoxResult.TabIndex = 6;
@@ -178,7 +176,7 @@
             // 
             this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExit.Location = new System.Drawing.Point(698, 504);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(182, 46);
             this.buttonExit.TabIndex = 7;
@@ -190,7 +188,7 @@
             // 
             this.buttonGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGo.Location = new System.Drawing.Point(452, 508);
-            this.buttonGo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGo.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGo.Name = "buttonGo";
             this.buttonGo.Size = new System.Drawing.Size(168, 46);
             this.buttonGo.TabIndex = 8;
@@ -202,7 +200,7 @@
             // 
             this.buttonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClear.Location = new System.Drawing.Point(452, 562);
-            this.buttonClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClear.Margin = new System.Windows.Forms.Padding(4);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(168, 46);
             this.buttonClear.TabIndex = 9;
@@ -236,7 +234,7 @@
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.Location = new System.Drawing.Point(696, 560);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(180, 48);
             this.buttonSave.TabIndex = 12;
@@ -253,16 +251,14 @@
             this.label5.Size = new System.Drawing.Size(337, 30);
             this.label5.TabIndex = 13;
             this.label5.Text = "Generate Column Length :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBoxBanyakData
             // 
             this.textBoxBanyakData.Location = new System.Drawing.Point(142, 215);
-            this.textBoxBanyakData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxBanyakData.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBanyakData.Name = "textBoxBanyakData";
             this.textBoxBanyakData.Size = new System.Drawing.Size(288, 31);
             this.textBoxBanyakData.TabIndex = 14;
-            this.textBoxBanyakData.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label7
             // 
@@ -307,10 +303,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSorting";
             this.Text = "Aplikasi Sorting ";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
