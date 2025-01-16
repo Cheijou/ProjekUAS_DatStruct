@@ -17,7 +17,7 @@ namespace Sorting_Application
     public partial class FormSorting : Form
     {
         Random random = new Random();
-        int banyaknyaData;
+        public static int banyaknyaData;
         TimeSpan durasiSorting;
         Sort arrayData;
 
@@ -116,6 +116,13 @@ namespace Sorting_Application
             radioButtonMerge.Checked = false;
             radioButtonQuick.Checked = false;
             textBoxBanyakData.Focus();
+        }
+
+        private void buttonVisualize_Click(object sender, EventArgs e)
+        {
+            FormSortingVisualizer formVisualize = new FormSortingVisualizer();
+            formVisualize.Owner = this;
+            formVisualize.ShowDialog();
         }
     }
 }
