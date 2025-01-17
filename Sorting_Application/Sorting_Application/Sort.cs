@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace Sorting_Application
 {
     public class Sort : ISortEngine
     {
         private int[] arrData;
+        private Stopwatch stopwatch;
 
         private bool isSorted = false;
         private Graphics graphics;
@@ -33,31 +35,23 @@ namespace Sorting_Application
            {
                 if (sortingMethod == 1)
                 {
-                    BubbleSortVisualization();
-                    GenerateData();
-                    FormSortingVisualizer.durasiSorting = BubbleSort();
+                    FormSortingVisualizer.durasiSorting = BubbleSortVisualization();
                 }
                 else if (sortingMethod == 2)
-                {
-                    InsertionSortVisualization();
-                    GenerateData();
-                    FormSortingVisualizer.durasiSorting = InsertionSort();
+                { 
+                    FormSortingVisualizer.durasiSorting = InsertionSortVisualization();
                 }
                 else if (sortingMethod == 3)
                 {
-                    SelectionSortVisualization();
-                    GenerateData();
-                    FormSortingVisualizer.durasiSorting = SelectionSort();
+                    FormSortingVisualizer.durasiSorting = SelectionSortVisualization();
                 }
                 else if (sortingMethod == 4)
                 {
-                    GenerateData();
                     ClearVisualization();
                     FormSortingVisualizer.durasiSorting = MergeSort();
                 }
                 else if (sortingMethod == 5)
                 {
-                    GenerateData();
                     ClearVisualization();
                     FormSortingVisualizer.durasiSorting = QuickSort(0, this.ArrData.Length - 1);
                 }
@@ -115,10 +109,15 @@ namespace Sorting_Application
             graphics.FillRectangle(blackBrush, 0, 0, this.ArrData.Length, maximumValue);
         }
 
+        public void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
+        {
+       
+        }
         #region Bubble Sort
         public TimeSpan BubbleSort()
         {
-            DateTime waktuMulai = DateTime.Now;
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             int temp;
             for (int i = 1; i < ArrData.Length; i++)
             {
@@ -132,13 +131,15 @@ namespace Sorting_Application
                     }
                 }
             }
-            DateTime waktuSelesai = DateTime.Now;
-            TimeSpan durasiSorting = waktuSelesai - waktuMulai;
+            stopwatch.Stop();
+            TimeSpan durasiSorting = stopwatch.Elapsed;
             return durasiSorting;
         }
 
-        public void BubbleSortVisualization()
+        public TimeSpan BubbleSortVisualization()
         {
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             int temp;
             for (int i = 1; i < ArrData.Length; i++)
             {
@@ -158,6 +159,9 @@ namespace Sorting_Application
                     }
                 }
             }
+            stopwatch.Stop();
+            TimeSpan durasiSorting = stopwatch.Elapsed;
+            return durasiSorting;
         }
         #endregion
 
@@ -165,15 +169,16 @@ namespace Sorting_Application
         int pos;
         public TimeSpan QuickSort(int first, int last)
         {
-            DateTime waktuMulai = DateTime.Now;
+            DateTime startSorting = DateTime.Now;
+            
             if (first < last)
             {
                 pos = SplitQuickSort(first, last);
                 QuickSort(first, pos - 1);
                 QuickSort(pos + 1, last);
             }
-            DateTime waktuAkhir = DateTime.Now;
-            TimeSpan durasiSorting = waktuAkhir - waktuMulai;
+            DateTime endSorting = DateTime.Now;
+            TimeSpan durasiSorting = endSorting - startSorting;
             return durasiSorting; 
 
         }
@@ -226,7 +231,7 @@ namespace Sorting_Application
             }
             else if (position == 1)
             {
-                graphics.FillRectangle(blackBrush, position, 0, 1, maximumValue);
+                
                 graphics.FillRectangle(blackBrush, position + 1, 0, 1, maximumValue);
                 graphics.FillRectangle(whiteBrush, position + 1, maximumValue - height, 1, maximumValue);
             }
@@ -241,7 +246,8 @@ namespace Sorting_Application
         #region Selection Sort
         public TimeSpan SelectionSort()
         {
-            DateTime waktuMulai = DateTime.Now;
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
 
             for (int i = 0; i < ArrData.Length - 1; i++)
             {
@@ -258,15 +264,17 @@ namespace Sorting_Application
                 ArrData[min_idx] = ArrData[i];
                 ArrData[i] = temp;
             }
-            DateTime waktuSelesai = DateTime.Now;
+            stopwatch.Stop();
 
-            TimeSpan durasiSorting = waktuSelesai - waktuMulai;
+            TimeSpan durasiSorting = stopwatch.Elapsed;
 
             return durasiSorting;
         }
 
-        public void SelectionSortVisualization()
+        public TimeSpan SelectionSortVisualization()
         {
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             for (int i = 0; i < ArrData.Length - 1; i++)
             {
                 int min_idx = i;
@@ -288,17 +296,23 @@ namespace Sorting_Application
                 graphics.FillRectangle(blackBrush, min_idx, 0, 1, maximumValue);
                 graphics.FillRectangle(whiteBrush, min_idx, maximumValue - ArrData[min_idx], 1, maximumValue);
             }
+            stopwatch.Stop();
+
+            TimeSpan durasiSorting = stopwatch.Elapsed;
+
+            return durasiSorting;
         }
         #endregion
 
         #region Merge Sort
         public TimeSpan MergeSort()
         {
-            DateTime waktuMulai = DateTime.Now;
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             //hasil array yang sudah urut dimasukan ke properti
             this.ArrData = MergeSortRecursive(this.ArrData);
-            DateTime waktuSelesai = DateTime.Now;
-            TimeSpan durasiSorting = waktuSelesai - waktuMulai;
+            stopwatch.Stop();
+            TimeSpan durasiSorting = stopwatch.Elapsed;
             return durasiSorting;
         }
 
@@ -388,7 +402,8 @@ namespace Sorting_Application
         #region Insertion Sort
         public TimeSpan InsertionSort()
         {
-            DateTime waktuMulai = DateTime.Now;
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
 
             for (int j = 1; j < ArrData.Length; j++)
             {
@@ -401,13 +416,15 @@ namespace Sorting_Application
                 }
                 ArrData[i+1] = key;
             }
-            DateTime waktuSelesai = DateTime.Now;
-            TimeSpan durasiSorting = waktuSelesai - waktuMulai;
+            stopwatch.Stop();
+            TimeSpan durasiSorting = stopwatch.Elapsed;
             return durasiSorting;
         }
 
-        public void InsertionSortVisualization()
+        public TimeSpan InsertionSortVisualization()
         {
+            stopwatch = Stopwatch.StartNew();
+            stopwatch.Start();
             for (int j = 1; j < ArrData.Length; j++)
             {
                 int key = ArrData[j];
@@ -421,8 +438,11 @@ namespace Sorting_Application
                 }
                 ArrData[i + 1] = key;
                 graphics.FillRectangle(blackBrush, i + 1, 0, 1, maximumValue);
-                graphics.FillRectangle(whiteBrush, i + 1, maximumValue - ArrData[j], 1, maximumValue);
+                graphics.FillRectangle(whiteBrush, i + 1, maximumValue - ArrData[i+1], 1, maximumValue);
             }
+            stopwatch.Stop();
+            TimeSpan durasiSorting = stopwatch.Elapsed;
+            return durasiSorting;
         }
         #endregion
     }
