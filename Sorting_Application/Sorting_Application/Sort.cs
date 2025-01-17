@@ -26,6 +26,8 @@ namespace Sorting_Application
 
         public static int sortingMethod;
         public static bool isVisualize = false;
+
+        public static string sortingType = "asc";
         public void DoWork(int[] theData, Graphics g, int maxValue)
         {
            arrData = theData;
@@ -49,12 +51,12 @@ namespace Sorting_Application
                 else if (sortingMethod == 4)
                 {
                     ClearVisualization();
-                    FormSortingVisualizer.durasiSorting = MergeSort();
+                    FormSortingVisualizer.durasiSorting = MergeSort(sortingType);
                 }
                 else if (sortingMethod == 5)
                 {
                     ClearVisualization();
-                    FormSortingVisualizer.durasiSorting = QuickSort(0, this.ArrData.Length - 1);
+                    FormSortingVisualizer.durasiSorting = QuickSort(0, this.ArrData.Length - 1, sortingType);
                 }
                 isSorted = IsSorted();
            }
@@ -110,10 +112,6 @@ namespace Sorting_Application
             graphics.FillRectangle(blackBrush, 0, 0, this.ArrData.Length, maximumValue);
         }
 
-        public void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
-        {
-       
-        }
         #region Bubble Sort
         public TimeSpan BubbleSort(string type = "")
         {
@@ -397,25 +395,13 @@ namespace Sorting_Application
                 right[i - mid] = data[i];
             }
 
-            
-
-            
-            if (type != "")
-            {
-                //direkursif terus sampai urut
-                left = MergeSortRecursive(left, type);
-                right = MergeSortRecursive(right,type);
-                //kedua array kanan dan kiri yang sudah urut digabung
-                return Merge(left, right, type);
-            }
-            else
-            {
-                //direkursif terus sampai urut
-                left = MergeSortRecursive(left, type);
-                right = MergeSortRecursive(right, type);
-                //kedua array kanan dan kiri yang sudah urut digabung
-                return Merge(left, right, type);
-            }
+    
+            //direkursif terus sampai urut
+            left = MergeSortRecursive(left, type);
+            right = MergeSortRecursive(right,type);
+            //kedua array kanan dan kiri yang sudah urut digabung
+            return Merge(left, right, type);
+        
         }
 
         private int[] Merge(int[] left, int[] right,string type)
