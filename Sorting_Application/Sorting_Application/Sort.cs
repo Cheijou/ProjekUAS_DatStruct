@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -114,20 +115,38 @@ namespace Sorting_Application
        
         }
         #region Bubble Sort
-        public TimeSpan BubbleSort()
+        public TimeSpan BubbleSort(string type = "")
         {
             stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
             int temp;
-            for (int i = 1; i < ArrData.Length; i++)
+            if (type == "asc")
             {
-                for (int j = 0; j < ArrData.Length - i; j++)
+                for (int i = 1; i < ArrData.Length; i++)
                 {
-                    if (ArrData[j] > ArrData[j+1])
+                    for (int j = 0; j < ArrData.Length - i; j++)
                     {
-                        temp = ArrData[j];
-                        ArrData[j] = ArrData[j+1];
-                        ArrData[j+1] = temp;
+                        if (ArrData[j] > ArrData[j + 1])
+                        {
+                            temp = ArrData[j];
+                            ArrData[j] = ArrData[j + 1];
+                            ArrData[j + 1] = temp;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 1; i < ArrData.Length; i++)
+                {
+                    for (int j = 0; j < ArrData.Length - i; j++)
+                    {
+                        if (ArrData[j] < ArrData[j + 1])
+                        {
+                            temp = ArrData[j];
+                            ArrData[j] = ArrData[j + 1];
+                            ArrData[j + 1] = temp;
+                        }
                     }
                 }
             }
@@ -167,40 +186,60 @@ namespace Sorting_Application
 
         #region Quick Sort
         int pos;
-        public TimeSpan QuickSort(int first, int last)
+        public TimeSpan QuickSort(int first, int last, string type = "")
         {
             DateTime startSorting = DateTime.Now;
-            
             if (first < last)
             {
-                pos = SplitQuickSort(first, last);
-                QuickSort(first, pos - 1);
-                QuickSort(pos + 1, last);
+                pos = SplitQuickSort(first, last, type);
+                QuickSort(first, pos - 1, type);
+                QuickSort(pos + 1, last, type);
             }
+
             DateTime endSorting = DateTime.Now;
             TimeSpan durasiSorting = endSorting - startSorting;
-            return durasiSorting; 
-
+            return durasiSorting;
         }
 
-        public int SplitQuickSort(int first, int last)
+        public int SplitQuickSort(int first, int last, string type)
         {
             int pivot = ArrData[first];
             int left = first;
             int right = last;
-            while (left < right)
+            if (type != "")
             {
-                while (ArrData[right] > pivot)
+                while (left < right)
                 {
-                    right--;
+                    while (ArrData[right] > pivot)
+                    {
+                        right--;
+                    }
+                    while (left < right && ArrData[left] <= pivot)
+                    {
+                        left++;
+                    }
+                    if (left < right)
+                    {
+                        Tukar(left, right);
+                    }
                 }
-                while (left < right && ArrData[left] <= pivot)
-                {
-                    left++;
-                }
-                if (left < right)
-                {
-                    Tukar(left, right);
+            }
+            else
+            {
+                while (left < right)
+                { 
+                    while (ArrData[right] < pivot)
+                    {
+                        right--;
+                    }
+                    while (left < right && ArrData[left] >= pivot)
+                    {
+                        left++;
+                    }
+                    if (left < right)
+                    {
+                        Tukar(left, right);
+                    }
                 }
             }
             pos = right;
@@ -244,25 +283,45 @@ namespace Sorting_Application
         #endregion
 
         #region Selection Sort
-        public TimeSpan SelectionSort()
+        public TimeSpan SelectionSort(string type = "")
         {
             stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
-
-            for (int i = 0; i < ArrData.Length - 1; i++)
+            if (type != "")
             {
-                int min_idx = i;
-                for (int j = i + 1; j < ArrData.Length; j++)
+                for (int i = 0; i < ArrData.Length - 1; i++)
                 {
-                    if (ArrData[j] < ArrData[min_idx])
+                    int min_idx = i;
+                    for (int j = i + 1; j < ArrData.Length; j++)
                     {
-                        min_idx = j;
+                        if (ArrData[j] < ArrData[min_idx])
+                        {
+                            min_idx = j;
+                        }
                     }
-                }
 
-                int temp = ArrData[min_idx];
-                ArrData[min_idx] = ArrData[i];
-                ArrData[i] = temp;
+                    int temp = ArrData[min_idx];
+                    ArrData[min_idx] = ArrData[i];
+                    ArrData[i] = temp;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < ArrData.Length - 1; i++)
+                {
+                    int max_idx = i;
+                    for (int j = i + 1; j < ArrData.Length; j++)
+                    {
+                        if (ArrData[j] > ArrData[max_idx])
+                        {
+                            max_idx = j;
+                        }
+                    }
+
+                    int temp = ArrData[max_idx];
+                    ArrData[max_idx] = ArrData[i];
+                    ArrData[i] = temp;
+                }
             }
             stopwatch.Stop();
 
@@ -305,18 +364,18 @@ namespace Sorting_Application
         #endregion
 
         #region Merge Sort
-        public TimeSpan MergeSort()
+        public TimeSpan MergeSort(string type = "")
         {
             stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
             //hasil array yang sudah urut dimasukan ke properti
-            this.ArrData = MergeSortRecursive(this.ArrData);
+            this.ArrData = MergeSortRecursive(this.ArrData, type);
             stopwatch.Stop();
             TimeSpan durasiSorting = stopwatch.Elapsed;
             return durasiSorting;
         }
 
-        private int[] MergeSortRecursive(int[] data)
+        private int[] MergeSortRecursive(int[] data, string type)
         {
             //array sudah urut dan di return
             if (data.Length <= 1)
@@ -338,33 +397,68 @@ namespace Sorting_Application
                 right[i - mid] = data[i];
             }
 
-            //direkursif terus sampai urut
-            left = MergeSortRecursive(left);
-            right = MergeSortRecursive(right);
+            
 
-            //kedua array kanan dan kiri yang sudah urut digabung
-            return Merge(left, right);
+            
+            if (type != "")
+            {
+                //direkursif terus sampai urut
+                left = MergeSortRecursive(left, type);
+                right = MergeSortRecursive(right,type);
+                //kedua array kanan dan kiri yang sudah urut digabung
+                return Merge(left, right, type);
+            }
+            else
+            {
+                //direkursif terus sampai urut
+                left = MergeSortRecursive(left, type);
+                right = MergeSortRecursive(right, type);
+                //kedua array kanan dan kiri yang sudah urut digabung
+                return Merge(left, right, type);
+            }
         }
 
-        private int[] Merge(int[] left, int[] right)
+        private int[] Merge(int[] left, int[] right,string type)
         {
             int[] result = new int[left.Length + right.Length];
             int i = 0, j = 0, k = 0;
-
-            while (i < left.Length && j < right.Length)
+            if (type != "")
             {
-                if (left[i] <= right[j])
+                while (i < left.Length && j < right.Length)
+                {
+                    if (left[i] <= right[j])
+                    {
+                        result[k] = left[i];
+
+                        if (isVisualize == true)
+                        {
+                            DrawData(k, result[k]);
+                        }
+
+                        i++;
+                    }
+                    else
+                    {
+                        result[k] = right[j];
+                        if (isVisualize == true)
+                        {
+                            DrawData(k, result[k]);
+                        }
+                        j++;
+                    }
+                    k++;
+                }
+                while (i < left.Length)
                 {
                     result[k] = left[i];
-
                     if (isVisualize == true)
                     {
                         DrawData(k, result[k]);
                     }
-                    
                     i++;
+                    k++;
                 }
-                else
+                while (j < right.Length)
                 {
                     result[k] = right[j];
                     if (isVisualize == true)
@@ -372,49 +466,92 @@ namespace Sorting_Application
                         DrawData(k, result[k]);
                     }
                     j++;
+                    k++;
                 }
-                k++;
             }
-            while (i < left.Length)
+            else
             {
-                result[k] = left[i];
-                if (isVisualize == true)
+                while (i < left.Length && j < right.Length)
                 {
-                    DrawData(k, result[k]);
+                    if (left[i] >= right[j])
+                    {
+                        result[k] = left[i];
+
+                        if (isVisualize == true)
+                        {
+                            DrawData(k, result[k]);
+                        }
+
+                        i++;
+                    }
+                    else
+                    {
+                        result[k] = right[j];
+                        if (isVisualize == true)
+                        {
+                            DrawData(k, result[k]);
+                        }
+                        j++;
+                    }
+                    k++;
                 }
-                i++;
-                k++;
-            }
-            while (j < right.Length)
-            {
-                result[k] = right[j];
-                if (isVisualize == true)
+                while (i < left.Length)
                 {
-                    DrawData(k, result[k]);
+                    result[k] = left[i];
+                    if (isVisualize == true)
+                    {
+                        DrawData(k, result[k]);
+                    }
+                    i++;
+                    k++;
                 }
-                j++;
-                k++;
+                while (j < right.Length)
+                {
+                    result[k] = right[j];
+                    if (isVisualize == true)
+                    {
+                        DrawData(k, result[k]);
+                    }
+                    j++;
+                    k++;
+                }
             }
             return result;
         }
         #endregion
 
         #region Insertion Sort
-        public TimeSpan InsertionSort()
+        public TimeSpan InsertionSort(string type = "")
         {
             stopwatch = Stopwatch.StartNew();
             stopwatch.Start();
-
-            for (int j = 1; j < ArrData.Length; j++)
+            if (type == "asc")
             {
-                int key = ArrData[j];
-                int i = j - 1;
-                while (i >= 0 && ArrData[i] > key) 
+                for (int j = 1; j < ArrData.Length; j++)
                 {
-                    ArrData[i + 1] = ArrData[i];
-                    i -= 1;
+                    int key = ArrData[j];
+                    int i = j - 1;
+                    while (i >= 0 && ArrData[i] > key)
+                    {
+                        ArrData[i + 1] = ArrData[i];
+                        i -= 1;
+                    }
+                    ArrData[i + 1] = key;
                 }
-                ArrData[i+1] = key;
+            }
+            else
+            {
+                for (int j = 1; j < ArrData.Length; j++)
+                {
+                    int key = ArrData[j];
+                    int i = j - 1;
+                    while (i >= 0 && ArrData[i] < key)
+                    {
+                        ArrData[i + 1] = ArrData[i];
+                        i -= 1;
+                    }
+                    ArrData[i + 1] = key;
+                }
             }
             stopwatch.Stop();
             TimeSpan durasiSorting = stopwatch.Elapsed;

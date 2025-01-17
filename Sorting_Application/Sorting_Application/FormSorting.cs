@@ -42,33 +42,62 @@ namespace Sorting_Application
                 {
                     arrayData.ArrData[i] = random.Next(banyaknyaData * 2);
                 }
-                if (radioButtonBubble.Checked == true)
+                if (radioButtonAsc.Checked == true)
                 {
-                    durasiSorting = arrayData.BubbleSort();
+                    if (radioButtonBubble.Checked == true)
+                    {
+                        durasiSorting = arrayData.BubbleSort("asc");
+                    }
+                    else if (radioButtonInsertion.Checked == true)
+                    {
+                        durasiSorting = arrayData.InsertionSort("asc");
+                    }
+                    else if (radioButtonSelection.Checked == true)
+                    {
+                        durasiSorting = arrayData.SelectionSort("asc");
+                    }
+                    else if (radioButtonQuick.Checked == true)
+                    {
+                        int first = 0;
+                        int last = arrayData.ArrData.Length - 1;
+                        durasiSorting = arrayData.QuickSort(first, last, "asc");
+                    }
+                    else if (radioButtonMerge.Checked == true)
+                    {
+                        durasiSorting = arrayData.MergeSort("asc");
+                    }
                 }
-                else if (radioButtonInsertion.Checked == true)
+                else
                 {
-                    durasiSorting = arrayData.InsertionSort();
-                }
-                else if (radioButtonSelection.Checked == true)
-                {
-                    durasiSorting = arrayData.SelectionSort();
-                }
-                else if (radioButtonQuick.Checked == true)
-                {
-                    int first = 0;
-                    int last = arrayData.ArrData.Length - 1;
-                    durasiSorting = arrayData.QuickSort(first, last);
-                }
-                else if (radioButtonMerge.Checked == true) 
-                {
-                    durasiSorting = arrayData.MergeSort();
+                    if (radioButtonBubble.Checked == true)
+                    {
+                        durasiSorting = arrayData.BubbleSort("desc");
+                    }
+                    else if (radioButtonInsertion.Checked == true)
+                    {
+                        durasiSorting = arrayData.InsertionSort();
+                    }
+                    else if (radioButtonSelection.Checked == true)
+                    {
+                        durasiSorting = arrayData.SelectionSort();
+                    }
+                    else if (radioButtonQuick.Checked == true)
+                    {
+                        int first = 0;
+                        int last = arrayData.ArrData.Length - 1;
+                        durasiSorting = arrayData.QuickSort(first, last);
+                    }
+                    else if (radioButtonMerge.Checked == true)
+                    {
+                        durasiSorting = arrayData.MergeSort();
+                    }
                 }
                 labelDurasiSorting.Text = durasiSorting.ToString("mm' : 'ss' : 'fff");
                 for (int i = 0; i < arrayData.ArrData.Length; i++)
                 {
                     listBoxResult.Items.Add(arrayData.ArrData[i]);
                 }
+
             }
             catch (Exception ex)
             {
@@ -86,12 +115,13 @@ namespace Sorting_Application
         {
             textBoxBanyakData.Clear();
             listBoxResult.Items.Clear();
-            radioButtonBubble.Checked = false;
+            radioButtonBubble.Checked = true;
             radioButtonInsertion.Checked = false;
             radioButtonSelection.Checked = false;
             radioButtonMerge.Checked = false;
             radioButtonQuick.Checked = false;
             textBoxBanyakData.Focus();
+            labelDurasiSorting.Text = "Hasil";
         }
 
         private void buttonVisualize_Click(object sender, EventArgs e)
@@ -99,6 +129,31 @@ namespace Sorting_Application
             FormSortingVisualizer formVisualize = new FormSortingVisualizer();
             formVisualize.Owner = this;
             formVisualize.ShowDialog();
+        }
+
+        private void FormSorting_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
